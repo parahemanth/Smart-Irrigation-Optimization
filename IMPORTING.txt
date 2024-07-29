@@ -1,0 +1,8 @@
+pandas
+numpy
+whitenoise
+requests
+beautifulsoup
+response
+Django
+sklearn

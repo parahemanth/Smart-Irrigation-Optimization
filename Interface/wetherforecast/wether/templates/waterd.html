@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Success Page</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    .container {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tick-mark-container {
+      width: 80px;
+      height: 80px;
+      background-color: #28a745;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: scaleUp 0.5s ease-out;
+    }
+
+    .tick-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 3px solid #28a745;
+      position: relative;
+    }
+
+    .tick-mark:before,
+    .tick-mark:after {
+      content: "";
+      position: absolute;
+    }
+
+    .tick-mark:before {
+      width: 15px;
+      height: 3px;
+      background-color: #28a745;
+      top: 27px;
+      left: 7px;
+      transform: rotate(-45deg);
+    }
+
+    .tick-mark:after {
+      width: 3px;
+      height: 25px;
+      background-color: #28a745;
+      top: 12px;
+      left: 27px;
+      transform: rotate(-45deg);
+    }
+
+    .success-message {
+      color: #28a745;
+      font-size: 18px;
+    }
+
+    @keyframes scaleUp {
+      0% {
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="text-center mt-5">
+      <div class="tick-mark-container">
+        <div class="tick-mark"></div>
+      </div>
+      <p class="mt-3 success-message">Success! Your action was completed.</p>
+    </div>
+  </div>
+
+  <script>
+    // You can add JavaScript logic here if needed
+    // For example, handling user interactions or additional animations
+  </script>
+
+</body>
+</html>

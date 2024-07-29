@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Irrigation Optimization</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Custom CSS for styling -->
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #3498db;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .navbar-toggler {
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: #3498db;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .navbar-toggler-icon {
+            background-color: #ecf0f1;
+            border-radius: 2px;
+        }
+
+        .navbar-nav {
+            margin-left: auto;
+        }
+
+        .nav-item {
+            margin-right: 10px;
+        }
+
+        .nav-link {
+            color: #ecf0f1;
+            font-weight: bold;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease-in-out;
+            border-radius: 5px;
+        }
+
+        .nav-link:hover {
+            background-color: #2980b9;
+        }
+
+        /* Rest of the styling from the previous code */
+        .container {
+            margin-top: 30px;
+        }
+
+        .sensor-card {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .sensor-value {
+            font-size: 24px;
+        }
+
+        .sensor-label {
+            font-size: 18px;
+            color: #3498db;
+        }
+
+        .sensor-data {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            transition: background-color 0.3s ease-in-out;
+            background-color: #3498db;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">Smart Irrigation Optimization</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#add-data"><i class="fas fa-plus"></i> Add Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact-us"><i class="fas fa-envelope"></i> Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sensor-card">
+                    <h2 class="sensor-label">Rainfall (mm)</h2>
+                    <p class="sensor-value" id="rainfall-value">{{rainfall_mm}}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sensor-card">
+                    <h2 class="sensor-label">Soil Moisture</h2>
+                    <p class="sensor-value" id="moisture-value">{{sensor}}%</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sensor-card">
+                    <form action="{% url 'waterd' place %}" method="POST">
+                        {% csrf_token %}
+                        <h2 class="sensor-label">Watering Minutes</h2>
+                        <p class="sensor-value" id="watering-hours-value" name="espdata">{{ water_time }}</p>
+                        
+                        <!-- Check if 'done' is True, and disable the button if so -->
+                        <button type="submit" class="btn btn-primary">Modify</button>
+                             <button type="submit" class="btn btn-primary" id="water-button">Water the Field</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="sensor-card">
+                    <h2 class="sensor-label">Crop kind </h2>
+                    <p class="sensor-value" id="crop-kind">{{crop_kind}}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="sensor-card">
+                    <h2 class="sensor-label">Time Frame</h2>
+                    <p class="sensor-value" id="time-frame">{{time_frame}} Days</p>
+                </div>
+            </div>
+       </div>
+
+    </div>
+
+    <!-- Sensor Data Section -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 offset-lg-8 sensor-data">
+                <h3>Sensor Data</h3>
+                <img src="https://cdn-learn.adafruit.com/assets/assets/000/083/326/original/adafruit_products_2821-Adafruit-ESP8266-Feather.gif?1572537506" width="70" height="50" alt="">
+                <!-- Display sensor data here -->
+                <p>Sensor Location: {{location}}</p>
+                <p>Soil moisture: {{sensor}}%</p>
+                <!-- Add more sensor data as needed -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+   
+</body> 
+</html>

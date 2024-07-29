@@ -1,0 +1,343 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{placeins}
+\usepackage{graphicx}
+\usepackage{float} % Add this package
+
+
+\usepackage{textcomp}
+\usepackage{xcolor}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+\begin{document}
+
+\title{Smart Irrigation Optimization: Harnessing Weather Forecasts and IoT for Crops}
+
+\author{\IEEEauthorblockN{Chandra Raga Madhuri}
+\IEEEauthorblockA{\textit{Faculty at the Department of CSE} \\
+\textit{Velagapudi Ramakrishna Siddhartha 
+Engineering College}\\
+Vijayawada,Andhra Pradesh,India\\
+madhuri.chandra1209@gmail.com}
+\and
+\IEEEauthorblockN{Para Hemanth Suresh}
+\IEEEauthorblockA{\textit{Department of CSE} \\
+\textit{Velagapudi Ramakrishna Siddhartha 
+Engineering College}\\
+Vijayawada,Andhra Pradesh,India \\
+phemanth1555@gmail.com}
+\and 
+\and
+
+
+\IEEEauthorblockN{\hspace{5mm}Pogiri Sai Kiran}
+\IEEEauthorblockA{\textit{\hspace{5mm}Department of CSE} \\
+\textit{\hspace{5mm}Velagapudi Ramakrishna Siddhartha 
+Engineering College}\\
+Vijayawada,Andhra Pradesh,India \\
+saikiranpogiri2003@gmail.com}
+
+
+}
+
+\maketitle
+
+\begin{abstract}
+Proper water management is of great importance in any agriculture, mostly because of the crops, which include paddy, corn, chili, and cotton. Uncertain weather conditions and unstable irrigation procedures cause either excessive water usage or a lack of irrigation that has a detrimental effect on yields. The conventional techniques of irrigation lack the measure and accuracy that are required to utilize water in an optimal manner, and hence there is wastage and low yields. This project proposes an IoT-based smart irrigation technology that utilizes climate prediction information gathered from the web to provide appropriate schedules for watering. The system involves using NodeMCU ESP8266 modules and soil moisture sensors and applying machine learning to the captured data to monitor soil moisture and forecast rainfall. From it, real-time soil moisture data together with rainfall can be incorporated to offer the appropriate watering durations with the aim of using water sparingly for paddy, corn, chili, and cotton. If the user agrees, then the system turns on the motor for optimal and right amount of time . This smart irrigation system technology implemented through the IoT greatly enhances the management of the water resource and the yields of these crops by automatically adjusting the time and duration of irrigation depending on the real environmental conditions and eradicating wastage of water in the process, leading to sustainable farming. 
+\end{abstract}
+
+\begin{IEEEkeywords}
+Smart Irrigation, IoT, Weather Forecasting, Machine Learning, Water Management, Farmer 
+Interface, Soil Moisture .
+\end{IEEEkeywords}
+
+\section{\textbf{Introduction}}
+\\
+
+Watering is one of the essential aspects of sustainable farming and agriculture which has a direct impact on the quality and quantity of the produce. This is especially so with crops that need water such as paddy, corn, chili, cotton and the like. With climate change and water shortage problems being more and more severe at the global level, there is a need to develop efficient irrigation techniques. Traditional methods of irrigation lead to either over-irrigation or under-irrigation, which are damaging to crop yields and also wastage of water. Therefore, proper use of water in agriculture has never been as important as it is now.
+
+The problem of resource management in today’s interconnected world has been a major issue due to the rapid growth of IoT devices and predictive analytics. Smart irrigation systems, which currently employ IoT devices and soil moisture sensors, have given a positive indication for automating and enhancing the irrigation process. For example, Ullah et al. (2021) explained that IoT-based irrigation systems could save 30\% water and increase crop production by 50\% by using soil moisture data for setting irrigation time [1]. In the same vein, Ragab et al. (2022) noted that the adoption of IoT technology in irrigation management could improve the accuracy of water application and the overall performance of crops and other resources [2]. Nevertheless, these systems are typically designed to operate in the present while excluding the forecasted weather conditions. Due to this limitation, there is likely to be overwatering, especially when a rainy season is around the corner. On the other hand, there may be instances when watering is missed due to a dry season. Thus, it is required to implement more complex systems that incorporate both the actual data and the forecasts of weather conditions.
+
+This work fills these gaps by presenting an IoT-based smart irrigation system that incorporates real-time soil moisture status and future weather conditions collected through web scraping. The system incorporates NodeMCU ESP8266 modules, soil moisture sensors, and machine learning algorithms to forecast rainfall and schedule the watering process. Our approach of using the predictive data is meant to offer a comprehensive solution to the problem of water management, thus allowing crops to get the right amount of water at the right time. This system not only reacts to the current soil conditions but also has the capability to predict the future weather changes, which makes it very effective in water management and crop yields. This project postulates that such an integration can lead to sustainable agriculture, effective water use and increase in production of water demanding crops.
+
+\\
+\\
+\section{\textbf{Literature Review}}
+\\
+
+In this section, we briefly discussed the overview of the previously employed approaches.
+
+Sharma, B. et.al [3] presents an Intelligent Irrigation System (IIS) for rice fields, utilizing IoT technology to monitor soil conditions and control water pumps remotely. Experimental results demonstrate its superior efficiency compared to conventional methods, enhancing crop yield through precise water management. Limitations include reliance on stable internet connectivity, scalability challenges, and the necessity for advanced integration with artificial intelligence for broader crop applicability.
+
+Taris, L. et.al. [4] proposes an IoT based smart irrigation system for rice fields that involves the use of automatic irrigation system and smartphone application. It is capable of remotely controlling and monitoring the irrigation channels and thus, the need for a human being to monitor the process is eliminated. The effectiveness of the system was proved in the testing phase, which was successful in the irrigation control and humidity sensing. However, some of the limitations are as follows: The system only works when there is a stable internet connection, and there may be problems with its scalability.
+
+
+Velmurugan, S.et al. [5] work emphasize the adoption of the IoT in the agricultural sector, especially in the management of water and the production of crops. Some of the methods that have been considered include; employing sensors to collect data, incorporating weather prediction, and using an automated irrigation system. However, the main challenges that are associated with this concept are scalability and the necessity for accurate weather predictions. However, some of the issues that continue to be raised include the cost of installation and the recurrent costs, which can be relatively high for smallholder farmers. Preserving the data privacy and security in the IoT-based agricultural systems is also important, and this means that there should be strong protective measures on possible cyber threats.
+
+
+Abo-Zahhad, M. M. et al. [6] establishes that smart irrigation contributes to the realization of the Sustainable Development Goal 6 and its Target 4 of improving water use efficiency by 2030. This work presents an IoT and machine learning-based technique for efficient crop irrigation by considering the moisture content in the soil and weather predictions. Disadvantages include higher power consumption resulting from extra sensors and the need to find ways to implement efficient and cheap such as solar panels. Improvements that could be made might include changing from using Arduino to Raspberry Pi as a processor for faster computation and using different machine learning algorithms that could be more efficient in measuring the amount of water needed.
+
+Pandey, P. et al. [7] highlights the significance of water in agriculture, and in particular, the significance of water management in agriculture, with a focus on the efficiency of irrigation being paramount to crop production, as well as the need for water conservation. The proposed low-cost irrigation strategy is a feasible plan to enhance the consumption of water through the use of IoT and ML. These are the aspects of soil moisture sensing for data gathering, the control of the valves and finally the experimental analysis on the wheat crop. Some of the drawbacks include the necessity for additional research on how the system can be applied to various geographical areas with different types of soil and weather conditions, as well as some possible difficulties in expanding the solution for other farming sectors.
+
+Obaideen, K. et al. [8] proposed the use of SMART irrigation systems, incorporating IoT and sensory is on the rise to improve sustainable agriculture, as per the UN SDGs, particularly SDG 6. 4. In the course, such systems have advantages like water saving, better control over soil and weather, and proper water utilization. However, some of the drawbacks include the following: There could be technical issues in implementing the models; they are expensive to develop initially; the models may not be easily scaled up for large-scale use; and they may require some form of customization for different regions and climates, which may affect the efficiency of the models.
+
+Blessy, J. A et al. [9] introduces about smart irrigation systems that use AI and IoT integration to enhance water usage in agriculture. It meets the fundamental requirement of optimality, thereby incorporating software, hardware, and firmware for optimum return and minimal waste. However, there are challenges that come with IoT, such as the complexities involved in integration of sensors, multi-layered IoT systems, and the need for advanced automation systems. Multiple considerations such as climate parameters for multi event increases the complexity even more, and the need to make decisions based on data requires constant updating for optimal system performance.
+
+García, L. et al. [10] presents a comprehensive analysis of smart irrigation systems in relation to IoT with particular emphasis on the need for effective water management in agriculture. It highlights the emerging need for ways of conserving water and the adoption of affordable sensors and wireless technologies for efficient water irrigation. However, it lacks insight on challenges that the adoption of these systems poses to the conventional farming practices in terms of compatibility and acceptability by farmers. Moreover, it dismisses the issues regarding dependence on technology and the importance of having backup plans in case of technology failures.
+
+Srivastava, A. et al. [11] focuses on IoT based smart agriculture, with a focus on soil moisture control by using WSN and Cloud computing. Although it provides ideas on energy-efficient wireless data transfer and climate-smart farming methods, the sensors are limited to soil moisture, which is a single aspect of the environment while there are other parameters like temperature and humidity that should not be overlooked. However, use of external cloud servers creates some issues of security and reliability of data and information. There are some issues that may arise when implementing such a system especially in terms of cost and the scale of complexity for small scale farmers. Lack of comparability with other methods, lack of broad applicability due to potential scalability problems, and lack of sufficient evidence for comprehensive assessment also remain its weaknesses.
+
+Mustafa, M. et al. [12] proposed Smart Irrigation System based on IoT and cloud computing for efficient water utilization in agriculture. In the same regard, it emphasizes the shift from conventional practices and focuses on the need to use soil moisture sensors and microcontrollers for accurate scheduling of irrigation. However, the issues such as dependence on the system, cost, maintenance, and compatibility are the barriers to the integration of the technology. It is important to address these issues to allow the system to operate optimally and be sustainable in the field of agriculture. The use of this technology should be done in a way that will benefit the users without harming the environment in the long run.
+
+\\
+
+\section{\textbf{Proposed System}}
+In this section, we will elaborate on how the system operates in detail, IoT Module and an interface for the farmer.
+
+\subsection{\textbf{System Architecture}}\label{AA}
+A block diagram represents a visual depiction of the system architecture. It typically illustrates the various components of the system and their interactions through blocks connected by lines that show relationships between them (figure 1).
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.45]{EPICS PICS/block.jpg}
+    \caption{Block Diagram Of System}
+    \label{fig:enter-label}
+\end{figure}
+
+In Figure 1, the block diagram illustrates the system architecture with components and their interactions.
+  
+1. \textit{User Interface}:Used to take basic details such as crop type, location of the field and neutral watering time, the user interface is the main interface through which farmers interact with the system. Also, it gives feedback on the recommended watering schedules, enabling farmers to approve them according to their preferences or needs.
+
+2. \textit{Server}:As the system’s control centre, the server acquires information from the user interface and other sources including weather information and actual soil moisture data. A weather forecasting system that hosts machine learning algorithms, it predicts rainfall and with all these information server computes the optimized watering time. As a means of communicating with the IoT device, it sends watering commands, receives information, and adjusts the schedules according to the data gathered.
+
+3. \textit{Weather Forecast Source}:Usual for the prediction of rainfall, the weather source offers the current forecast information. It also helps in decision making in relation to watering schedules within the system since it provides accurate weather details of the specified location at a given time.
+
+4. \textit{ThingSpeak Cloud Platform}: ThingSpeak is a platform that can be used to relay real-time sensor data as well as information from the soil moisture sensor in particular to the server with the help of the IoT device. Through this, it facilitates sharing of information that is useful in decision making and control of the irrigation system hence improving on its performance.
+
+5. \textit{NodeMCU ESP8266 (IoT Device)}:As the operating core of the system, the IoT device (NodeMCU ESP8266) is tasked with the execution of irrigation commands that are based on optimized schedules that are provided to it by the server. It sends information to the server to get watering commands and sends the current soil moisture data to ThingSpeak, to interact with the motor and sensor for irrigation management.
+
+6. \textit{Motor}:As the mechanical part that dispenses water to the field, the motor is expected to respond to the irrigation instructions issued by the IoT device. As a key component that is responsible for watering crops in a timely and efficient manner as per the calculated schedules, it is of immense importance in the health and productivity of crops.
+
+7. \textit{Soil Moisture Sensor}:Proper use of the soil moisture sensor is vital for determining the moisture content of the soil in the field and the data is useful for development of proper watering schedule. Through forwarding data to ThingSpeak via NodeMCU and the server for processing and decision making, it plays a vital role in the system’s learning and adjustment to the change in environmental factors.
+
+
+
+\subsection{\textbf{IoT Module}}
+The proposed intelligent irrigation system will include the following components in an effort to improve the current water usage in the irrigation sector. The core of this system is the NodeMCU ESP8266, which serves as the mediator between the hardware components (Water Pump, Soil Moisture Sensor, and Relay Module) and the user interface. This microcontroller \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.13]{EPICS PICS/schematic.jpg}
+    \caption{Schematic Representation Of IoT Module}
+    \label{fig:enter-label}
+\end{figure}that has four PWM channels and which has been programmed with the Arduino is very useful in controlling and monitoring the irrigation system. It also includes a resistive soil moisture sensor for the detection of the moisture content in the soil and this information is sent to the interface backend using the WiFi module through HTTP requests.
+
+In Figure 2, the schematic representation of the IoT module depicts its key components and connectivity.The server uses the complex algorithms to analyze the soil moisture data and provide the best time to water the plants. These calculated watering times are then transmitted back to the NodeMCU ESP8266, which controls the relay module to water the plants. The relay module acts as a switch, controlling the water pump and its operation through ON and OFF signals. The water pump that is connected to the relay module provides water to the field effectively as required. This control and synchronization between the component enable the irrigation system to work in the right manner and give the right amount of water based on the current soil moisture. With the help of this system, the conventional methods of irrigation are enhanced and hence the sustainable agriculture is achieved by using the water resource efficiently.
+
+\\
+
+\subsection{\textbf{User's Interface}}
+ The Smart Irrigation System's user interface (UI) is designed for ease of use and efficiency, meeting farmers' needs and ensuring accurate water management with two engaging pages.
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.12]{EPICS PICS/landig.png}
+    \caption{Farmer's Input Page}
+    \label{fig:enter-label}
+\end{figure}
+ On the first page (Figure 3), Farmers include important information on the first page, such as the type of crop, the location of the field, and the usual watering time. This knowledge is essential because it helps to customize irrigation decisions in the future by taking into account the local environment and the water requirements of certain crops. After submission, the data is processed by the system to provide an irrigation strategy that is specific to each user.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.12]{EPICS PICS/interfa.png}
+    \caption{Farmer's Monitoring And Control Page}
+    \label{fig:enter-label}
+\end{figure}
+
+The second page (Figure 4) contains specific information and actionable options. It dynamically forecasts rainfall and displays real-time soil moisture levels for the specified field location. Simultaneously, it advises a suitable watering schedule according on the crop type—daily for paddy, every three days for chilli, and weekly for maize and cotton—to maximize resource utilization. Furthermore, the interface visualizes the exact placement of the IoT device and determines the optimal watering period in minutes based on detailed data analytics. This ensures exact water supply based on crop requirements. Farmers retain control by manually adjusting the planned irrigation length before confirming their decision. Following activation, the IoT gadget activates the water pump, allowing the irrigation schedule to be properly implemented.
+
+\\
+\subsection{\textbf{Data Flow Overview}}
+A data flow diagram (DFD) represents the flow of data through a system, showing inputs, processes, and outputs.
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.4]{EPICS PICS/DATAFLOW.jpg}
+    \caption{Data Flow Diagram Of System}
+    \label{fig:enter-label}
+\end{figure}
+ In the Figure 5 we describe data flow diagram of the smart irrigation system, the data that is collected is directly related to the watering needs of the crops in the irrigation system.Farmers are able to input important information such as crop type, field location, and neutral watering time through the user interface, and this information is then forwarded to the server for processing. In this case, the server manages the process of requesting the weather forecast and soil moisture information from other sources and adapts the request process according to the irrigation schedule of the chosen crop.For instance, if the crop is chili and it requires watering after every three days, the system will get information on the next three days. On the other hand, for crops like paddy which are irrigated on daily basis, data is collected on daily basis while for crops like corn and cotton that are irrigated once in week data is collected for the week ahead. This way, the system receives the right and timely information that is appropriate for each crop regarding the water requirements for irrigation scheduling and resource management. After data collection, the server uses machine learning to predict rainfall and calculate the most efficient irrigation intervals and then sends them to the farmer for approval or modification. Upon confirmation, the server interacts with the IoT device to monitor and manage the control of the irrigation system to ensure that crops are watered at specific intervals as per the needs of the crops. In this process, the system maintains a constant check on the soil moisture content and updates the information when changes occur and incorporates the farmer’s feedback to improve the future forecast and improve on the irrigation management. Thus, the intelligent irrigation system achieves the optimal crop production with minimal water usage through this integrated approach.
+
+\\
+
+\section{\textbf{System Implementation}}
+In our system implementation we discuss about NodeMCU with sensors, linear regression for rainfall, and a Django interface for irrigation scheduling and Optimized watering time calculation.
+ \subsection{\textbf{Hardware Setup}}
+ The NodeMCU ESP8266 acts as the central processing unit, allowing communication between various physical components and applications. It is set up to work flawlessly with the soil moisture sensor and the relay module, which regulates the water pump.In Figure 6, the hardware setup illustrates the connections in detail.  The NodeMCU's 3.3V pin is linked to the VCC pin of the soil moisture sensor, and the GND pin is connected to the soil moisture sensor's GND pin,so it forms a single voltage point of reference. In addition, the relay module's VCC terminal is connected to the NodeMCU's 5V pin, while another GND pin is connected to the relay module's ground (GND).
+
+ \begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.105]{EPICS PICS/prot.jpg}
+    \caption{Hardware Implementation}
+    \label{fig:enter-label}
+\end{figure}
+
+The NodeMCU's digital pins D1 and D2 are connected to the relay module's signal pin (IN) and the soil moisture sensor's signal pin (S) for data transfer. The relay's common (COM) and normally open (NO) terminals are connected to the water pump's power supply. The NodeMCU may start irrigation by sending a high signal to the relay module, which activates the relay and allows electricity to flow to the water pump. When the watering is finished, the NodeMCU sends a signal to disable the relay and turn off the pump. With this design, real-time data on soil moisture allows for exact control of the irrigation operation.
+
+\subsection{\textbf{Linear Regression Model}}
+ We scrape weather forecasting data from weather.com using the BeautifulSoup package. The retrieved data is subsequently filtered to produce rainfall projections, which we use as input for our predictive algorithm. Using Python's scikit-learn module, we use linear regression to estimate rainfall patterns by creating a mathematical link between time (x) and expected rainfall (y). The methodology consists of multiple steps: collecting and preparing hourly meteorological data, initializing the Linear Regression class, training the model with historical time and rainfall data, and forecasting future rainfall values. This approach tailors the prediction intervals to the crop type: daily for rice, every three days for chilli, and weekly for corn and cotton. The model's predicted accuracy is measured using measures such as Mean Absolute Error (MAE).
+
+
+Linear regression's simplicity and interpretability make it essential for understanding rainfall patterns, notably in agriculture. Accurate weather predictions have a huge impact on agricultural management and emergency preparedness. Our technique improves weather forecasting capabilities by including linear regression, providing vital insights into the dynamics of temporal rainfall. By incorporating machine learning into our intelligent irrigation system, we can ensure precise irrigation scheduling, promote water saving, and optimize crop health. Predicting rainfall accurately based on past data, customized to the individual demands of different crops, demonstrates the value of data-driven decision-making in modern agriculture.
+
+
+\subsection{\textbf{Interface Implementation}}
+ The interface is built with Django, a powerful open-source web framework known for its ability to allow rapid development and straightforward design concepts. It includes a REST API to enable smooth integration with internet services that follow REST design principles. The linear regression technique studies weather and soil moisture data to identify relationships and predict average rainfall. This enables for the customisation of irrigation schedules for various crops. ThingSpeak processes NodeMCU data using MATLAB analytics, and the results are shown on a configurable dashboard. NodeMCU gets automatic signals from ThingSpeak, allowing for effective, data-driven smart irrigation control.
+
+
+\\
+\subsection{\textbf{Watering Time Calculation}}
+ A crop's specific irrigation schedule and water requirements determine the optimal watering period, which differs greatly depending on the type of crop. For example, paddy fields require daily watering at a rate of 7 mm per day, whereas chilli plants demand 9 mm of water every three days. In contrast, corn and cotton crops require 12.6 and 16 mm of water each week, respectively. Soil moisture levels are crucial in selecting the optimal watering plan. Initially, the system translates soil moisture measurements into millimeters using a predetermined soil constant. Assuming a baseline irrigation period in the absence of soil moisture, the following step combines the computed soil water content with expected rainfall.It then subtracts that amount from the total amount of rainfall and soil water to determine the amount of water deficit left for the crop. After that, the needed irrigation time is calculated using this balance of water. This calculation calculates the time needed to apply 1 mm of water by dividing the neutral watering period by the total amount of water needed per unit time. To determine the ideal watering period in minutes, the system multiplies this time by the balance of water at the end. In order to provide precise and effective irrigation management catered to the unique requirements of every crop, this calculation procedure is smoothly incorporated into the system's user interface.
+
+
+
+
+
+
+
+\textit{\textbf{Calculation of Soil Water Content}}
+
+soil\_water = soil\_moisture\_value * 5 * soil\_constant * 0.1\)
+
+\textit{\textbf{Total Water Required}} 
+
+total\_water\_required = water\_for\_crop\) 
+
+\textbf{\textit{The water for crop varies from crop to crop} }
+
+\textbf{\textit{water\_for\_crop}}
+
+# paddy - 7mm / Day\) 
+
+# chilli- 9mm / 3 Days\) 
+
+# corn - 12.6mm / Week\)  
+
+# cotton - 16mm / Week\) 
+
+\textit{\textbf{Balance Water Calculation}} 
+
+balance\_water = water\_for\_crop - (soil\_water + rainfall)\) 
+
+ \textbf{\textit{Time Calculation for Balance Water}}
+ 
+\textit{\textbf{Hours required for 1mm of water}} 
+
+time\_for\_1mm = water\_duration / water\_for\_crop \) 
+
+ \textit{\textbf{Total time required in hours}} 
+ 
+total\_time\_hours = time\_for\_1mm * balance\_water\) 
+
+ \textit{\textbf{Total time required in minutes }}
+ 
+# total\_time\_minutes = total\_time\_hours * 60\)
+
+
+
+\\
+
+\section{\textbf{Result}}
+The evaluation of the IoT based smart irrigation system demonstrated how the system could help in increasing water management efficiency and crop productivity. The system, which involved using soil moisture sensors connected to NodeMCU ESP8266 module, delivered real-time data in a manner that was consistent with the updates made on the ThingSpeak platform. This data was of great importance to the determination of the water requirement for crops hence proper irrigation. The linear regression model that was designed using historical weather data was able to accurately predict rainfall and the system could then, modify the watering schedule accordingly. This eradicated the problem of overwatering or underwatering of the plant hence achieving the desired result. Figures 7 and 8 illustrate the real-time data collection and watering schedule adjustments on ThingSpeak Cloud Platform based on soil moisture and rainfall predictions.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{EPICS PICS/soilmoisture.png}
+    \caption{ThingSpeak Soil Moisture Data}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.4]{EPICS PICS/watering.png}
+    \caption{ThingSpeak Watering Time Data}
+    \label{fig:enter-label}
+\end{figure}
+The prototype showed how the application of the optimized irrigation schedules could result in a large amount of water saved when compared to the conventional methods. It also adapted the irrigation frequency for paddy, chilli, corn, and cotton crops using the soil moisture level and expected rain. When there was a prediction of rain the system adjusted the watering time and used only the necessary amount of water. On the other hand, it ensured that it either provided the same or longer duration of watering during the dry seasons to make up for the water shortage. This helped in watering crops in the right manner and in the right measure depending on their requirements and the prevailing climatic conditions.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{EPICS PICS/when rain.png}
+    \caption{Calculation When Rainfall}
+    \label{fig:enter-label}
+\end{figure}
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.15]{EPICS PICS/no rain.png}
+    \caption{Calculation When No Rainfall}
+    \label{fig:enter-label}
+\end{figure}
+
+ Figures 9
+ and 10 depict the system's calculations and adjustments during rainy and dry periods, ensuring efficient water usage tailored to crop needs and climatic conditions. Easy to use, the user interface enabled the farmers to input crop type, field location, and neutral watering time on which the system based its optimal schedule. The ability to collect feedback from the users as well as the flexibility to change the irrigation schedule also added to the reliability of the system and the satisfaction of the users. 
+
+\begin{figure}[h]
+        \centering
+        \includegraphics[scale=0.17]{WhatsApp Image 2024-06-01 at 00.54.18_a35c0b48.jpg}
+        \caption{System Implementation}
+        \label{fig:enter-label}
+    \end{figure}
+Figure 11 illustrates the physical implementation of the system, showcasing its practical application and integration with agricultural practices.
+The economic advantages are several; the most obvious, less water usage and increased product yield. While the current implementation of the system showed promising results for scalability and can be easily integrated with improved machine learning algorithms and more sensors as well as the potential for further improvement in water management in agricultural applications.
+
+\\
+\section{\textbf{Conclusion And Future Work}}
+In Conclusion our developed IoT based smart irrigation system model is a major leap in the field of efficient water usage in agriculture. By incorporating real time soil moisture data and accurate weather data, the system helps to optimise irrigation schedules to provide the right amount of water to crops, which could enhance water utilisation and crop yields. Using the NodeMCU ESP8266 module, soil moisture sensors, and machine learning to predict rainfall, has been efficient in making the irrigation solution sensitive enough to the environment. As for the future work, the main goal will be to improve the system with the help of new machine learning algorithms and to broaden the list of crops that can be analyzed by the system. Moreover, incorporating other environmental factors like temperature and humidity will enhance the system’s decision-making process to its goal of becoming a reliable tool in supporting sustainable agriculture and water conservation in the future version.
+\\
+\\
+\\
+
+
+\begin{thebibliography}{00}
+\bibitem{b1} Ullah, R., Abbas, A. W., Ullah, M., Khan, R. U., Khan, I. U., Aslam, N., & Aljameel, S. S. (2021). 
+EEMP: an IoT-based energy-efficient water management platform for smart irrigation. Scientific 
+Programming, 2021, 1-9. 
+
+\bibitem{b2} Ragab, M, A., Badreldeen, M. M. M., Sedhom, A., & Mamdouh, W. M. (2022). IoT-based smart 
+irrigation system. International Journal of Industry and Sustainable Development, 3(1), 76-86.
+
+\bibitem{b3} Sharma, B. B., & Kumar, N. (2021). IoT-based intelligent irrigation system for paddy crops using 
+an internet-controlled water pump. International Journal of Agriculture and Environmental 
+Information Systems (IJAEIS), 12(1), 21-36.
+
+\bibitem{b4} Taris, L., Cahyadi, A., Nurmala, N., Jaya, H., & Shalihah, A. (2022). IoT- IoT-based smart 
+Irrigation System for Rice Fields. 
+
+\bibitem{b5}  Velmurugan, S. (2020). An IoT-based smart irrigation system using soil moisture and weather 
+prediction.
+
+\bibitem{b6} Abo-Zahhhad, M. M. (2023). IoT-Based Automated Management Irrigation System Using Soil 
+Moisture Data and Weather Forecasting Adopting Machine Learning Technique. Sohag 
+Engineering Journal, 3(2), 122-140. 
+
+
+\bibitem{b7} Pandey, P., & Agarwal, S. A Low-Cost Smart Irrigation Planning Bases on Machine Learning and 
+Internet of Things. Available at SSRN 4414709. 
+
+\bibitem{b8} Obaideen, K., Yousef, B. A., Almallahi, M. N., Tan, Y. C., Mahmoud, M., Jaber, H., & Ramadan, 
+M. (2022). An overview of smart irrigation systems using an IoT. Energy Nexus, 100124.
+
+\bibitem{b9} Blessy, J. A (2021, February). Smart irrigation system techniques using artificial intelligence and 
+IoT. In 2021 Third International Conference on Intelligent Communication Technologies and 
+Virtual Mobile Networks (ICICV) (pp.1355-1359). IEEE. 
+
+\bibitem{b10} García, L., Parra, L., Jimenez, J. M., Lloret, J., & Lorenz, P. (2020). IoT-based smart irrigation 
+systems: An overview of the recent trends in sensors and IoT systems for irrigation in precision 
+agriculture. Sensors, 20(4), 1042.
+
+\bibitem{b11} Srivastava, A., Das, D. K., & Kumar, R. (2020, July). Monitoring of soil parameters and 
+controlling soil moisture through IoT-based smart agriculture. In 2020 IEEE Students Conference 
+on Engineering & Systems (SCES) (pp. 1-6). IEEE. 
+
+\bibitem{b12} Mustafa, M., Abbas, A., Bsoul, Q., & Shabbir, A. (2021). Smart Irrigation System Based on the 
+Internet of Things and the Cloud. Int. J. Mod. Trends Sci. Technology, 7(09), 19- 24.
+
+\end{document}
